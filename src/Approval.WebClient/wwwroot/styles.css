@@ -1,21 +1,24 @@
 :root {
-  --bg: #0f172a;
-  --surface: #1e293b;
-  --surface-2: #273549;
-  --border: #334155;
-  --text: #f1f5f9;
-  --muted: #94a3b8;
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --draft: #64748b;
+  color-scheme: light;
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --surface-2: #f1f4fa;
+  --border: #e3e8f1;
+  --text: #18243a;
+  --muted: #718096;
+  --primary: #4567e8;
+  --primary-hover: #3554cf;
+  --success: #15966a;
+  --warning: #d89018;
+  --danger: #d94d5c;
+  --draft: #75839b;
+  --shadow: 0 12px 32px rgba(28, 42, 75, 0.06);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html { min-width: 320px; }
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: Inter, 'Segoe UI', system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
@@ -27,62 +30,77 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 0.9rem 1.5rem;
+  gap: 1.2rem;
+  padding: 0.85rem max(1.5rem, calc((100vw - 1440px) / 2));
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 20;
+  box-shadow: 0 4px 18px rgba(28, 42, 75, 0.035);
 }
 
-.brand { display: flex; align-items: center; gap: 0.85rem; }
+.brand { display: flex; align-items: center; gap: 0.85rem; min-width: 0; }
 .brand-badge {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  width: 44px; height: 44px; border-radius: 14px;
+  background: linear-gradient(145deg, #5578f4, #314fc6);
   display: grid; place-items: center; font-weight: 800; color: #fff;
+  box-shadow: 0 7px 16px rgba(69, 103, 232, 0.24);
 }
-.brand h1 { font-size: 1.05rem; font-weight: 700; }
-.brand p { font-size: 0.78rem; color: var(--muted); }
+.brand h1 { font-size: 1rem; font-weight: 750; letter-spacing: -0.025em; }
+.brand p { font-size: 0.73rem; color: var(--muted); margin-top: 0.08rem; }
 
-.topbar-controls { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-.user-switcher { display: flex; align-items: center; gap: 0.45rem; font-size: 0.85rem; }
+.topbar-controls { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.user-switcher { display: flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; }
+.user-switcher label { color: var(--muted); }
 
 select, input, textarea {
-  background: var(--bg);
+  background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.48rem 0.72rem;
+  border-radius: 10px;
+  padding: 0.58rem 0.76rem;
   font-size: 0.88rem;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
-select:focus, input:focus, textarea:focus { outline: 2px solid var(--primary); border-color: transparent; }
+select:focus, input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(69, 103, 232, 0.13);
+}
 
 .status-pill {
-  padding: 0.32rem 0.7rem;
+  padding: 0.38rem 0.72rem;
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 600;
+  white-space: nowrap;
 }
-.status-pill.online { background: rgba(16,185,129,0.18); color: #34d399; border: 1px solid rgba(16,185,129,0.4); }
-.status-pill.reconnecting { background: rgba(245,158,11,0.18); color: #fbbf24; border: 1px solid rgba(245,158,11,0.4); }
-.status-pill.offline { background: rgba(239,68,68,0.18); color: #f87171; border: 1px solid rgba(239,68,68,0.4); }
+.status-pill.online { background: #e9f8f1; color: #138258; border: 1px solid #caeedc; }
+.status-pill.reconnecting { background: #fff5df; color: #a76a0d; border: 1px solid #f5e3b8; }
+.status-pill.offline { background: #fff0f1; color: #bd3948; border: 1px solid #f3d4d7; }
 
 .btn {
-  border: none; border-radius: 8px; padding: 0.5rem 0.9rem;
+  border: none; border-radius: 10px; padding: 0.58rem 0.92rem;
   font-size: 0.86rem; font-weight: 600; cursor: pointer; transition: 0.15s;
+  font-family: inherit;
 }
-.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary { background: var(--primary); color: #fff; box-shadow: 0 5px 12px rgba(69, 103, 232, 0.18); }
 .btn-primary:hover { background: var(--primary-hover); }
-.btn-secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
-.btn-secondary:hover { background: #334155; }
+.btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--surface-2); }
 .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
-.btn-ghost:hover { color: var(--text); border-color: var(--muted); }
-.btn-success { background: var(--success); color: #052e16; }
+.btn-ghost:hover { color: var(--text); border-color: #bac5d6; background: var(--surface-2); }
+.btn-success { background: #daf4e8; color: #11734f; }
 .btn-danger { background: var(--danger); color: #fff; }
-.btn-warning { background: var(--warning); color: #451a03; }
+.btn-warning { background: #fff0cf; color: #86590e; }
 .btn-sm { padding: 0.3rem 0.65rem; font-size: 0.78rem; }
-.btn-icon { position: relative; background: var(--surface-2); color: var(--text); border: 1px solid var(--border); font-size: 1rem; }
+.btn-icon { position: relative; background: var(--surface); color: var(--text); border: 1px solid var(--border); font-size: 1rem; }
+.btn:focus-visible, .close-btn:focus-visible, a:focus-visible {
+  outline: 3px solid rgba(69, 103, 232, 0.35);
+  outline-offset: 2px;
+}
 
 .badge {
   position: absolute; top: -6px; right: -6px;
@@ -91,7 +109,7 @@ select:focus, input:focus, textarea:focus { outline: 2px solid var(--primary); b
   display: inline-flex; align-items: center; justify-content: center; padding: 0 5px;
 }
 
-.container { max-width: 1400px; margin: 1.25rem auto; padding: 0 1.25rem; }
+.container { max-width: 1440px; margin: 1.7rem auto; padding: 0 1.5rem; }
 
 .stats-grid {
   display: grid;
