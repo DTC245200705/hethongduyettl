@@ -111,26 +111,78 @@ select:focus, input:focus, textarea:focus {
 
 .container { max-width: 1440px; margin: 1.7rem auto; padding: 0 1.5rem; }
 
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+.eyebrow {
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  margin-bottom: 0.35rem;
+}
+.page-heading h2 {
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+}
+.page-subtitle { color: var(--muted); font-size: 0.9rem; margin-top: 0.4rem; }
+.page-heading-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  padding: 0.58rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+.heading-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #23ae7a;
+  box-shadow: 0 0 0 4px rgba(35, 174, 122, 0.11);
+}
+
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 0.85rem;
-  margin-bottom: 1.2rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-bottom: 1.4rem;
 }
 .stat-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-left: 4px solid var(--primary);
-  border-radius: 10px;
-  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
   display: flex; flex-direction: column; gap: 0.25rem;
+  min-height: 112px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
 }
-.stat-card.draft { border-left-color: var(--draft); }
-.stat-card.submitted { border-left-color: var(--warning); }
-.stat-card.approved { border-left-color: var(--success); }
-.stat-card.rejected { border-left-color: var(--danger); }
-.stat-label { font-size: 0.8rem; color: var(--muted); }
-.stat-card strong { font-size: 1.6rem; }
+.stat-card::after {
+  content: '';
+  position: absolute;
+  right: -17px;
+  top: -25px;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: var(--stat-tint, #edf1ff);
+}
+.stat-card.draft { --stat-tint: #eef1f5; }
+.stat-card.submitted { --stat-tint: #fff3dc; }
+.stat-card.approved { --stat-tint: #e4f6ed; }
+.stat-card.rejected { --stat-tint: #fff0f1; }
+.stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+.stat-card strong { font-size: 1.8rem; line-height: 1.2; letter-spacing: -0.04em; z-index: 1; }
 
 .toolbar {
   display: flex; justify-content: space-between; align-items: center;
