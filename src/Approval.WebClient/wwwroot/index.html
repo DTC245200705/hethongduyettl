@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hệ thống Phê duyệt Tài liệu Phân tán (.NET 10)</title>
+  <title>DocApprove · Quản lý tài liệu</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
@@ -28,7 +28,7 @@
         <input id="customUserInput" type="text" placeholder="username..." class="hidden" />
       </div>
 
-      <span id="signalrStatus" class="status-pill offline" title="Trạng thái kết nối SignalR real-time">
+      <span id="signalrStatus" class="status-pill offline" title="Trạng thái kết nối SignalR real-time" aria-live="polite">
         ● SignalR: Đang kết nối...
       </span>
 
@@ -36,14 +36,26 @@
         Trạng thái hệ thống
       </button>
 
-      <button id="btnNotifications" class="btn btn-icon" title="Thông báo real-time">
+      <button id="btnNotifications" class="btn btn-icon" title="Thông báo real-time" aria-label="Mở thông báo">
         🔔 <span id="unreadBadge" class="badge hidden">0</span>
       </button>
     </div>
   </header>
 
   <main class="container">
-    <section class="stats-grid">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">KHÔNG GIAN LÀM VIỆC / PHÊ DUYỆT</p>
+        <h2>Quản lý tài liệu</h2>
+        <p class="page-subtitle">Theo dõi tiến độ và xử lý hồ sơ trong một không gian tập trung.</p>
+      </div>
+      <div class="page-heading-note">
+        <span class="heading-indicator"></span>
+        <span>Đồng bộ trạng thái theo thời gian thực</span>
+      </div>
+    </section>
+
+    <section class="stats-grid" aria-label="Tổng quan trạng thái tài liệu">
       <div class="stat-card">
         <span class="stat-label">Tổng hồ sơ</span>
         <strong id="statTotal">0</strong>
@@ -68,7 +80,7 @@
 
     <section class="toolbar">
       <div class="filters">
-        <select id="filterStatus">
+        <select id="filterStatus" aria-label="Lọc theo trạng thái">
           <option value="">Tất cả trạng thái</option>
           <option value="Draft">Draft (Nháp)</option>
           <option value="Submitted">Submitted (Chờ duyệt)</option>
@@ -76,13 +88,13 @@
           <option value="Rejected">Rejected (Từ chối)</option>
         </select>
 
-        <select id="filterScope">
+        <select id="filterScope" aria-label="Lọc tài liệu theo vai trò">
           <option value="all">Tất cả tài liệu</option>
           <option value="createdBy">Do tôi tạo</option>
           <option value="approver">Giao tôi phê duyệt</option>
         </select>
 
-        <input id="filterSearch" type="text" placeholder="Tìm theo tiêu đề hoặc nội dung..." />
+        <input id="filterSearch" type="text" placeholder="Tìm theo tiêu đề hoặc nội dung..." aria-label="Tìm tài liệu" />
         <button id="btnRefresh" class="btn btn-secondary">Làm mới</button>
       </div>
 
@@ -126,7 +138,7 @@
     <div class="modal-card">
       <div class="modal-header">
         <h3>Tạo tài liệu phê duyệt mới</h3>
-        <button class="close-btn" data-close="createModal">&times;</button>
+        <button class="close-btn" data-close="createModal" aria-label="Đóng hộp thoại">&times;</button>
       </div>
       <form id="createForm">
         <div class="form-group">
@@ -165,7 +177,7 @@
     <div class="modal-card wide">
       <div class="modal-header">
         <h3>Giám sát Health Check & Transactional Outbox</h3>
-        <button class="close-btn" data-close="healthModal">&times;</button>
+        <button class="close-btn" data-close="healthModal" aria-label="Đóng hộp thoại">&times;</button>
       </div>
       <div id="healthContent" class="health-grid">Đang kiểm tra...</div>
       <div class="modal-actions">
@@ -181,7 +193,7 @@
       <h3>Thông báo (<span id="drawerUserLabel"></span>)</h3>
       <div>
         <button id="btnMarkAllRead" class="btn btn-sm btn-secondary">Đọc hết</button>
-        <button id="btnCloseDrawer" class="close-btn">&times;</button>
+        <button id="btnCloseDrawer" class="close-btn" aria-label="Đóng thông báo">&times;</button>
       </div>
     </div>
     <div id="notificationList" class="drawer-body"></div>
